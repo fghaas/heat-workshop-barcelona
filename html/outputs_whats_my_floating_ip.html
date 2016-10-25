@@ -1,3 +1,35 @@
 <div class="lab_instructions">
-<%block filter="olx_helpers.markdown_file">slides/outputs_whats_my_floating_ip.md</%block>
+<h2>Outputs: What's my Floating IP?</h2>
+
+<p><strong>12-outputs.yaml</strong></p>
+
+<div class="codehilite"><pre><code><span class="l l-Scalar l-Scalar-Plain">outputs</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">floating_ip</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">get_attr</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">myfloatingip</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">floating_ip_address</span>
+</code></pre></div>
+
+<p><strong>Create the stack and display floating IP</strong></p>
+
+<pre><code>heat stack-create --poll -f /tmp/stack.yaml mystack
+heat output-show mystack floating_ip
+</code></pre>
+
+<p><em>Partial:</em> <code>partial12.yaml</code></p>
+
+<!--
+Now we are almost done. I did promise you a more convenient method to figure
+out the Floating IP. Also, we haven't used the get_attr function so far. Let's
+do both in one fell swoop. Please add this last snippet at the end of the
+template and create the stack one last time. The snippet in question is an
+outputs section and it contains one output named floating_ip which will
+retrieve the floating IP address using the get_attr function.
+
+Now you will have an output named floating_ip and it will contain just the
+floating IP adress. This is a lot more convenient than plucking it from
+resource-show's output.
+-->
+
 </div>

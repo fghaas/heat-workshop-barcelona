@@ -1,3 +1,26 @@
 <div class="lab_instructions">
-<%block filter="olx_helpers.markdown_file">slides/a_port_on_your_network.md</%block>
+<h2>A Port on your Network</h2>
+
+<p><strong>05-port.yaml</strong></p>
+
+<div class="codehilite"><pre><code>  <span class="l l-Scalar l-Scalar-Plain">myport</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">OS::Neutron::Port</span>
+    <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">network</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">get_resource</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mynetwork</span>
+</code></pre></div>
+
+<p><strong>Create the stack</strong></p>
+
+<pre><code>heat stack-create --poll -f /tmp/stack.yaml mystack
+</code></pre>
+
+<p><em>Partial:</em> <code>partial05.yaml</code></p>
+
+<!--
+Along with the network and subnet we need a virtual port to connect the
+instance to. One could associate a floating IP with an instance directly, but
+with a port you get to control the network for machines on multiple networks.
+-->
+
 </div>

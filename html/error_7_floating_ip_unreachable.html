@@ -1,3 +1,26 @@
 <div class="lab_instructions">
-<%block filter="olx_helpers.markdown_file">slides/error_7_floating_ip_unreachable.md</%block>
+<h2>Error 7: Floating IP unreachable</h2>
+
+<p><strong>Error</strong></p>
+
+<p><em>Pings or SSH to floating IP address time out</em></p>
+
+<p><strong>Resolution</strong></p>
+
+<p>Create a security group that allows inbound traffic (default is to block everything).</p>
+
+<p><em>Partial:</em> <code>partial09.yaml</code></p>
+
+<!--
+The problem is fairly simple: OpenStack's default security group blocks all
+inbound traffic and you need to whitelist the traffic you want to get through
+to your instances. You do that by creating a security group with rules
+permitting your desired traffic.
+
+Again, a Heat template somebody downloads from the Internet may make
+assumptions: namely, that it runs in an environment where somebody modified the
+default security group's rules to allow inbound traffic (which is not a good
+idea, but still a fairly common practice).
+-->
+
 </div>

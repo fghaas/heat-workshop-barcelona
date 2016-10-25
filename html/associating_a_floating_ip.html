@@ -1,3 +1,32 @@
 <div class="lab_instructions">
-<%block filter="olx_helpers.markdown_file">slides/associating_a_floating_ip.md</%block>
+<h2>Associating a Floating IP</h2>
+
+<p><strong>09-float.yaml</strong></p>
+
+<div class="codehilite"><pre><code>  <span class="l l-Scalar l-Scalar-Plain">myfloatingip</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">OS::Neutron::FloatingIP</span>
+    <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">port_id</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span> <span class="nv">get_resource</span><span class="p p-Indicator">:</span> <span class="nv">myport</span> <span class="p p-Indicator">}</span>
+      <span class="l l-Scalar l-Scalar-Plain">floating_network</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">get_param</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">floating_network</span>
+</code></pre></div>
+
+<p><strong>Create the stack and display floating IP</strong></p>
+
+<pre><code>heat stack-create --poll -f /tmp/stack.yaml mystack
+heat resource-show mystack myfloatingip
+</code></pre>
+
+<p><em>Partial:</em> <code>partial09.yaml</code></p>
+
+<!--
+With the router and its router interface on our subnet in place, we can again
+add the Floating IP from three slides back. Once you have created the stack you
+can figure out which floating IP got assigned by doing a `resource-show` on the
+stack's myfloatingip resource this is somewhat clumsy since resource-show will
+dump a lot of unrelated information, but it has the advantage of always
+working. The more convenient method we'll cover later will only work if the
+template author has provided for it.
+-->
+
 </div>

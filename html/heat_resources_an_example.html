@@ -1,1 +1,45 @@
-<%block filter="olx_helpers.markdown_file">slides/heat_resources_an_example.md</%block>
+<h2>Heat Resources: An example</h2>
+
+<div class="codehilite"><pre><code><span class="l l-Scalar l-Scalar-Plain">resources</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">myserver</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">OS::Nova::Server</span>
+    <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">myserver</span>
+      <span class="l l-Scalar l-Scalar-Plain">key_name</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span> <span class="nv">get_param</span><span class="p p-Indicator">:</span> <span class="nv">key_name</span> <span class="p p-Indicator">}</span>
+      <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span> <span class="nv">get_param</span><span class="p p-Indicator">:</span> <span class="nv">image</span> <span class="p p-Indicator">}</span>
+      <span class="l l-Scalar l-Scalar-Plain">flavor</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span> <span class="nv">get_param</span><span class="p p-Indicator">:</span> <span class="nv">flavor</span> <span class="p p-Indicator">}</span>
+      <span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> 
+            <span class="l l-Scalar l-Scalar-Plain">get_resource</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">myport</span>
+</code></pre></div>
+
+<!--
+Let's work our way up to the hands-on part and look at what we'll be working
+with: Heat resources. Here you see an example of a Heat resource's definition,
+namely a Nova instance. Note the indentation that marks it as belonging to the
+`resources` section.
+
+It starts off with a resource name, "myserver" in this case. You can use this
+name to reference the resource in other parts of the Heat template.
+
+One indentation level further down you'll find its resource type,
+"OS::Nova::Server" in this case. This will tell Heat which resource plugin and
+in turn which OpenStack service to use to create this resource.
+
+At the same level you will find the optional `depends_on` keyword you can use
+to wait for dependencies upon resource creation. It takes one or more resource
+names. You normally don't need this, though: if you reference other resources
+in a resource definition they will automatically be added as dependencies.
+
+The real meat of a resource is its `properties` section. These properties are
+passed to the resource plugin and from there to the creating OpenStack service.
+In the case of an instance, you'd commonly pass a Nova keypair name for access
+to the instance, the image and the flavor to use. Usually you'll also have at
+least one weutron port or network to connect the instance too. In the case at
+hand we also have a user data script for setting up the instance.
+
+By the way: you will find most of this information on the cheat sheets I
+prepared, so don't worry about catching up if you zoned out looking at this
+wall of YAML for a second.
+-->
+

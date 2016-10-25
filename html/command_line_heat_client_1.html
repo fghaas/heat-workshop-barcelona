@@ -1,1 +1,36 @@
-<%block filter="olx_helpers.markdown_file">slides/command_line_heat_client_1.md</%block>
+<h2>Command Line Heat Client (1)</h2>
+
+<p><em>Prerequisite: Environment with valid OpenStack credentials</em></p>
+
+<p><strong>Create stack <code>mystack</code> from <code>/tmp/stack.yaml</code></strong></p>
+
+<pre><code>heat stack-create -f /tmp/stack.yaml mystack
+</code></pre>
+
+<p><strong>With parameter</strong></p>
+
+<pre><code>heat stack-create -f /tmp/stack.yaml -P flavor=m1.tiny mystack
+</code></pre>
+
+<p><strong>Delete stack <code>mystack</code></strong> </p>
+
+<pre><code>heat stack-delete mystack
+</code></pre>
+
+<!--
+Now that we know what a Heat template is we'll need to send it to the Heat API
+somehow. You can do this through the OpenStack Dashboard, but it's a bit
+unwieldy and not really helpful for debugging. So we'll use the Heat command
+line client for that. One thing we need for that is a OpenRC file with valid
+authentication credentials for your cloud. At this point you probably have one
+already, but we'll take care of this later.
+
+Let's go through the most important client operations quickly:
+
+* `heat stack-create` creates a Heat stack from a template. You can optionally
+  specify parameters if the defaults in the Heat template don't suit you or a
+  parameter is mandatory by virtue of not having a Default.
+
+* Deleting a stack is straightforward: `heat stack-delete`.
+-->
+

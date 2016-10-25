@@ -1,3 +1,37 @@
 <div class="lab_instructions">
-<%block filter="olx_helpers.markdown_file">slides/creating_an_instance.md</%block>
+<h2>Creating an Instance</h2>
+
+<p><strong>06-server.yaml</strong></p>
+
+<div class="codehilite"><pre><code>  <span class="l l-Scalar l-Scalar-Plain">myserver</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">OS::Nova::Server</span>
+    <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">myserver</span>
+      <span class="l l-Scalar l-Scalar-Plain">config_drive</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="l l-Scalar l-Scalar-Plain">flavor</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span> <span class="nv">get_param</span><span class="p p-Indicator">:</span> <span class="nv">flavor</span> <span class="p p-Indicator">}</span>
+      <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span> <span class="nv">get_param</span><span class="p p-Indicator">:</span> <span class="nv">image</span> <span class="p p-Indicator">}</span>
+      <span class="l l-Scalar l-Scalar-Plain">key_name</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span> <span class="nv">get_param</span><span class="p p-Indicator">:</span> <span class="nv">key_name</span> <span class="p p-Indicator">}</span>
+      <span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span> <span class="nv">get_resource</span><span class="p p-Indicator">:</span> <span class="nv">myport</span> <span class="p p-Indicator">}</span>
+      <span class="l l-Scalar l-Scalar-Plain">user_data_format</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">RAW</span>
+      <span class="l l-Scalar l-Scalar-Plain">user_data</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">#!/bin/sh</span>
+        <span class="no">echo &#39;Hello, World&#39; &gt;&gt; /etc/motd</span>
+</code></pre></div>
+
+<p><strong>Create the stack</strong></p>
+
+<pre><code>heat stack-create --poll -f /tmp/stack.yaml mystack
+</code></pre>
+
+<p><em>Partial:</em> <code>partial06.yaml</code></p>
+
+<!--
+Now comes the centerpiece of the heat template: the instance supported by all
+virtual infrastructure we created so far (and the infrastructure we are going
+to create in the next few steps). This is the first time we use the get_param
+function to retrieve template parameters. We can abuse these parameters to
+provoke one of the next two errors. But let's have another error first.
+-->
+
 </div>

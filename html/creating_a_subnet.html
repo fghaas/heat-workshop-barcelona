@@ -1,3 +1,28 @@
 <div class="lab_instructions">
-<%block filter="olx_helpers.markdown_file">slides/creating_a_subnet.md</%block>
+<h2>Creating a Subnet</h2>
+
+<p><strong>04-subnet.yaml</strong></p>
+
+<div class="codehilite"><pre><code>  <span class="l l-Scalar l-Scalar-Plain">mysubnet</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">OS::Neutron::Subnet</span>
+    <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">cidr</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10.0.0.1/24</span>
+      <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mysubnet</span>
+      <span class="l l-Scalar l-Scalar-Plain">network</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">get_resource</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mynetwork</span>
+</code></pre></div>
+
+<p><strong>Create the stack</strong></p>
+
+<pre><code>heat stack-create --poll -f /tmp/stack.yaml mystack
+</code></pre>
+
+<p><em>Partial:</em> <code>partial04.yaml</code></p>
+
+<!--
+Once the network is created we need a subnet to assign IP addresses from. This
+is the first time we will use a Heat function, namely get_resource, to tell the
+subnet resource what network to be on.
+-->
+
 </div>
