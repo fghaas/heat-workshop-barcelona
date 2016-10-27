@@ -1,3 +1,30 @@
 <div class="lab_instructions">
-<%block filter="olx_helpers.markdown_file">slides/creating_a_router.md</%block>
+<h2>Creating a Router</h2>
+
+<p><strong>07-router.yaml</strong></p>
+
+<div class="codehilite"><pre><code>  <span class="l l-Scalar l-Scalar-Plain">router</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">OS::Neutron::Router</span>
+    <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">external_gateway_info</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">network</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">get_param</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">floating_network</span>
+</code></pre></div>
+
+<p><strong>Create the stack</strong></p>
+
+<pre><code>heat stack-create --poll -f /tmp/stack.yaml mystack
+</code></pre>
+
+<p><em>Partial:</em> <code>partial07.yaml</code></p>
+
+<!--
+So let's create a virtual router now. This is a resource Neutron provides
+and it's neccessary for providing SNAT or providing routing for Floating IPs
+associated with Nova instances. Creating the router will only take care of the
+external side of things, which is to say, the router will have a leg on the
+external network (the external_gateway_info property tells it to have an
+interface on our floating IP network) but not on our project network.
+-->
+
 </div>

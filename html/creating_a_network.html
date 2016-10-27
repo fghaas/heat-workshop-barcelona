@@ -1,3 +1,34 @@
 <div class="lab_instructions">
-<%block filter="olx_helpers.markdown_file">slides/creating_a_network.md</%block>
+<h2>Creating a Network</h2>
+
+<p><strong>Begin resources section after parameters section</strong></p>
+
+<pre><code>resources:
+</code></pre>
+
+<p><strong>03-network.yaml</strong></p>
+
+<pre><code>  mynetwork:
+    type: OS::Neutron::Net
+    properties:
+      name: mynet
+</code></pre>
+
+<p><strong>Create the stack</strong></p>
+
+<pre><code>heat stack-create --poll -f /tmp/stack.yaml mystack
+</code></pre>
+
+<p><em>Partial:</em> <code>partial03.yaml</code></p>
+
+<!--
+Now we'll create a resources section and add our first resource: a Neutron
+network. The server we will create later will be on this network. The
+'resources:' keyword beginning the resources section is at the same indentation
+level as the 'parameters:' keyword for the parameters section we created in the
+previous step (no indentation). Resource definitions, such as the one for
+mynetwork come after the 'resources:' keyword and should be indented with two
+spaces.
+-->
+
 </div>

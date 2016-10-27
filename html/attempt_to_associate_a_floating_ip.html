@@ -1,3 +1,26 @@
 <div class="lab_instructions">
-<%block filter="olx_helpers.markdown_file">slides/attempt_to_associate_a_floating_ip.md</%block>
+<h2>Attempt to associate a floating IP</h2>
+
+<p><strong>09-float.yaml</strong></p>
+
+<div class="codehilite"><pre><code>  <span class="l l-Scalar l-Scalar-Plain">myfloatingip</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">OS::Neutron::FloatingIP</span>
+    <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">port_id</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span> <span class="nv">get_resource</span><span class="p p-Indicator">:</span> <span class="nv">myport</span> <span class="p p-Indicator">}</span>
+      <span class="l l-Scalar l-Scalar-Plain">floating_network</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">get_param</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">floating_network</span>
+</code></pre></div>
+
+<p><strong>Create the stack</strong></p>
+
+<pre><code>heat stack-create --poll -f /tmp/stack.yaml mystack
+</code></pre>
+
+<p><em>Partial:</em> <code>partial09-broken.yaml</code></p>
+
+<!--
+Next let's connect our server by adding a Floating IP Address to it. To this
+end, please add the myfloatingip resource to your template.
+-->
+
 </div>

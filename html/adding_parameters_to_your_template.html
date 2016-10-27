@@ -1,3 +1,28 @@
 <div class="lab_instructions">
-<%block filter="olx_helpers.markdown_file">slides/adding_parameters_to_your_template.md</%block>
+<h2>Adding parameters to your template</h2>
+
+<p><strong>02-parameters.yaml</strong></p>
+
+<div class="codehilite"><pre><code><span class="l l-Scalar l-Scalar-Plain">parameters</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">floating_network</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+    <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">floating</span>
+  <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+    <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cirros-0.3.4-x86_64</span>
+  <span class="l l-Scalar l-Scalar-Plain">flavor</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+    <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">m1.tiny</span>
+  <span class="l l-Scalar l-Scalar-Plain">key_name</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+    <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+</code></pre></div>
+
+<p><strong>Create the stack</strong></p>
+
+<pre><code>heat stack-create --poll -f /tmp/stack.yaml mystack
+</code></pre>
+
+<p><em>Partial:</em> <code>partial02.yaml</code></p>
+
 </div>

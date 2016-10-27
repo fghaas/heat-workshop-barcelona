@@ -1,3 +1,25 @@
 <div class="lab_instructions">
-<%block filter="olx_helpers.markdown_file">slides/a_minimal_template.md</%block>
+<h2>A minimal template</h2>
+
+<p><strong>with-errors/01-minimal.yaml</strong></p>
+
+<div class="codehilite"><pre><code><span class="l l-Scalar l-Scalar-Plain">heat_template_version</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2525-01-01</span>
+</code></pre></div>
+
+<p><strong>Try to create stack</strong></p>
+
+<pre><code>. /root/openrc.myuser
+heat stack-create --poll -f \
+     /tmp/stack.yaml mystack
+</code></pre>
+
+<p><em>Partial:</em> <code>partial01-broken.yaml</code></p>
+
+<!--
+Our first exercise will use the smallest valid Heat template: just a
+heat_template_version section. It contains an obvious error, but please copy it
+exactly the way it is, after all we're interested in the error message it
+provokes.
+-->
+
 </div>

@@ -1,3 +1,25 @@
 <div class="lab_instructions">
-<%block filter="olx_helpers.markdown_file">slides/error_4_ssh_key_not_found.md</%block>
+<h2>Error 4: SSH key not found</h2>
+
+<p><strong>Error Message</strong></p>
+
+<pre><code>ERROR: Property error: : resources.myserver.properties.key_name: : Error
+validating value 'mykey': The Key (mykey) could not be found.
+</code></pre>
+
+<p><strong>Resolution</strong></p>
+
+<pre><code>nova keypair-add --pub-key ~/.ssh/id_rsa.pub mykey
+</code></pre>
+
+<p><em>Partial:</em> <code>partial06.yaml</code></p>
+
+<!--
+Namely, I omitted a little something on the preparation slide to show you a
+particular Heat feature: It will validate properties passed to resources (where
+that makes sense) and complain if you supply invalid values, such as a
+nonexistent Nova key pair name. Let's create that key pair now and retry the
+stack-create.
+-->
+
 </div>

@@ -1,3 +1,34 @@
 <div class="lab_instructions">
-<%block filter="olx_helpers.markdown_file">slides/port_revisited.md</%block>
+<h2>Port revisited</h2>
+
+<p><strong>11-port.yaml</strong></p>
+
+<div class="codehilite"><pre><code>  <span class="l l-Scalar l-Scalar-Plain">myport</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">OS::Neutron::Port</span>
+    <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">network</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">get_resource</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mynetwork</span>
+      <span class="l l-Scalar l-Scalar-Plain">security_groups</span><span class="p p-Indicator">:</span>                <span class="c1"># NEW</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">get_resource</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">allow_inbound</span> <span class="c1"># NEW</span>
+</code></pre></div>
+
+<p><strong>Create the stack and display floating IP</strong></p>
+
+<pre><code>heat stack-create --poll -f /tmp/stack.yaml mystack
+heat resource-show mystack floatingip
+</code></pre>
+
+<p><em>Partial:</em> <code>partial11.yaml</code></p>
+
+<!--
+So let's fix this omission now by adding a security_groups property to our
+port resource. Just add the lines marked with a 'NEW' comment to our template's
+port resource. Once you have them, create the stack once more and ping the
+instance's floating IP. This time it should _really_ work - at least I didn't
+add any more deliberate errors. You can also log in to the machine using SSH
+and make sure your user data script did in fact change /etc/motd.
+-->
+
+<!-- =============== END OF RESOURCES SECTION ================ -->
+
 </div>

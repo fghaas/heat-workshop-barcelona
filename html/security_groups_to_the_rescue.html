@@ -1,3 +1,34 @@
 <div class="lab_instructions">
-<%block filter="olx_helpers.markdown_file">slides/security_groups_to_the_rescue.md</%block>
+<h2>Security Groups to the Rescue</h2>
+
+<p><strong>10-group.yaml</strong></p>
+
+<div class="codehilite"><pre><code>  <span class="l l-Scalar l-Scalar-Plain">allow_inbound</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">OS::Neutron::SecurityGroup</span>
+    <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="s">&quot;Allow</span><span class="nv"> </span><span class="s">inbound</span><span class="nv"> </span><span class="s">SSH</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">ICMP</span><span class="nv"> </span><span class="s">traffic&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">allow SSH and ICMP from anywhere</span>
+      <span class="l l-Scalar l-Scalar-Plain">rules</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">direction</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ingress</span>
+          <span class="l l-Scalar l-Scalar-Plain">remote_ip_prefix</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0.0/0</span>
+          <span class="l l-Scalar l-Scalar-Plain">protocol</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">tcp</span>
+          <span class="l l-Scalar l-Scalar-Plain">port_range_min</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">22</span>
+          <span class="l l-Scalar l-Scalar-Plain">port_range_max</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">22</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">remote_ip_prefix</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0.0/0</span>
+          <span class="l l-Scalar l-Scalar-Plain">protocol</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">icmp</span>
+</code></pre></div>
+
+<p><strong>Create the stack and display floating IP</strong></p>
+
+<pre><code>heat stack-create --poll -f /tmp/stack.yaml mystack
+heat resource-show mystack myfloatingip
+</code></pre>
+
+<p><em>Partial:</em> <code>partial10.yaml</code></p>
+
+<!--
+So let's add a security group that allows SSH and ICMP to our template now.
+Once it's there create the stack and ping its floating IP address again.
+-->
+
 </div>

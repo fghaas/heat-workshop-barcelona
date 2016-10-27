@@ -1,3 +1,25 @@
 <div class="lab_instructions">
-<%block filter="olx_helpers.markdown_file">slides/error_1_heat_template_version.md</%block>
+<h2>Error 1: <code>heat_template_version</code></h2>
+
+<p><em>Partial:</em> <code>partial01-broken.yaml</code></p>
+
+<p><strong>Error Message</strong></p>
+
+<pre><code>ERROR: The template version is invalid: "heat_template_version: 2525-01-01". "heat_template_version" should be one of: 2013-05-23, 2014-10-16, 2015-04-30, 2015-10-15
+</code></pre>
+
+<p><strong>Resolution</strong></p>
+
+<p>Pick one of the template versions supported by your cloud (<code>2015-10-15</code> or
+lower for the cloud we provided) from the list above.</p>
+
+<p><em>Partial:</em> <code>partial01.yaml</code></p>
+
+<!--
+So here we have our error message: We are using an unrealistically high
+heat_template_version. The error message is fairly helpful and gives us a list
+of supported versions, so please pick one from that list. In the following
+examples we'll use 2015-10-15, so that one is the best one to pick in our case.
+-->
+
 </div>

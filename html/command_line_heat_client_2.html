@@ -1,1 +1,42 @@
-<%block filter="olx_helpers.markdown_file">slides/command_line_heat_client_2.md</%block>
+<h2>Command Line Heat Client (2)</h2>
+
+<p><strong>Detailed Information about stack <code>mystack</code></strong></p>
+
+<pre><code>heat stack-show mystack
+</code></pre>
+
+<p>Error messages (if any) in field <code>stack_status_reason</code> (more readable in
+<code>heat-engine.log</code>, if you have access)</p>
+
+<p><strong>List resources of stack <code>mystack</code></strong></p>
+
+<pre><code>heat resource-list -n 5 mystack
+</code></pre>
+
+<p><strong>List outputs for stack <code>mystack</code></strong></p>
+
+<pre><code>heat output-list mystack
+</code></pre>
+
+<p><strong>Get Output <code>floating_ip</code> from stack mystack</strong></p>
+
+<pre><code>heat output-show mystack floating_ip
+</code></pre>
+
+<!--
+* To get detailed information about an existing stack you can use `heat
+  stack-show`. That's mainly useful for a stack that ends up in state
+  `CREATE_FAILED` for some reason. In that case `stack_status_reason` will
+  contain error output.
+
+* Also useful: resource-list. It will show you a stack's component resources and
+  their state. If a stack fails to build you can identify the culprit that way.
+  The `-n` option tells Heat to resolve the component resource of (up to 5)
+  nested Heat stacks, that is stacks that consist of multiple nested Heat
+  templates.
+
+* If a stack has outputs defined you can list them with `heat output-list` and
+  display an individual output's value using `heat output-show`.
+
+-->
+

@@ -1,3 +1,26 @@
 <div class="lab_instructions">
-<%block filter="olx_helpers.markdown_file">slides/adding_a_routerinterface.md</%block>
+<h2>Adding A RouterInterface</h2>
+
+<p><strong>08-interface.yaml</strong></p>
+
+<div class="codehilite"><pre><code>  <span class="l l-Scalar l-Scalar-Plain">router_interface</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">OS::Neutron::RouterInterface</span>
+    <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">router</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span> <span class="nv">get_resource</span><span class="p p-Indicator">:</span> <span class="nv">router</span> <span class="p p-Indicator">}</span>
+      <span class="l l-Scalar l-Scalar-Plain">subnet</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span> <span class="nv">get_resource</span><span class="p p-Indicator">:</span> <span class="nv">mysubnet</span> <span class="p p-Indicator">}</span>
+</code></pre></div>
+
+<p><strong>Create the stack</strong></p>
+
+<pre><code>heat stack-create --poll -f /tmp/stack.yaml mystack
+</code></pre>
+
+<p><em>Partial:</em> <code>partial08.yaml</code></p>
+
+<!--
+The internal side we are going to take care of with a RouterInterface. That
+creates a Neutron port on a subnet, the subnet created by our template in this
+case.
+-->
+
 </div>
